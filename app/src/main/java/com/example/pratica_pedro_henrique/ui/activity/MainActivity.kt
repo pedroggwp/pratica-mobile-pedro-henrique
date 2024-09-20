@@ -1,11 +1,12 @@
-package com.example.pratica_pedro_henrique
+package com.example.pratica_pedro_henrique.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.pratica_pedro_henrique.R
 import com.example.pratica_pedro_henrique.databinding.ActivityMainBinding
-import com.example.pratica_pedro_henrique.fragments.HomeFragment
-import com.example.pratica_pedro_henrique.fragments.SettingsFragment
+import com.example.pratica_pedro_henrique.ui.fragment.FunnyFragment
+import com.example.pratica_pedro_henrique.ui.fragment.SurpriseFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,17 +16,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(HomeFragment())
+        replaceFragment(FunnyFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when(item.itemId) {
-                R.id.home -> {
-                    replaceFragment(HomeFragment())
+                R.id.funny -> {
+                    replaceFragment(FunnyFragment())
                     true
                 }
 
-                R.id.settings -> {
-                    replaceFragment(SettingsFragment())
+                R.id.surprise -> {
+                    replaceFragment(SurpriseFragment())
                     true
                 }
 
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) : Unit {
+    private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(binding.frameLayout.id, fragment)
